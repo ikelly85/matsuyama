@@ -1,61 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Matsuyama Itinerary</title>
-    <style>
-        /* Add your custom CSS styling here */
-        body { font-family: Arial, sans-serif; }
-        .tabs { display: flex; cursor: pointer; }
-        .tab { padding: 10px; border: 1px solid #ccc; }
-        .content { display: none; padding: 10px; border: 1px solid #ccc; }
-        .active { display: block; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마쓰야마 4박 5일 일정</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #2c2c2a; font-size: 14px; padding: 16px; }
+  h2 { font-size: 18px; font-weight: 500; margin-bottom: 2px; }
+  .sub { font-size: 12px; color: #5f5e5a; margin-bottom: 12px; }
+  .rental-card { display: flex; gap: 16px; flex-wrap: wrap; padding: 10px 14px; border-radius: 8px; border: 1px solid #d3d1c7; background: #fff; margin-bottom: 16px; }
+  .rental-item strong { display: block; font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+  .rental-item { font-size: 12px; color: #5f5e5a; }
+  .day-tabs { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+  .tab { padding: 6px 14px; border-radius: 20px; border: 1px solid #888; background: transparent; color: #5f5e5a; cursor: pointer; font-size: 13px; transition: all .2s; white-space: nowrap; }
+  .tab.active { background: #2c2c2a; color: #fff; border-color: transparent; }
+  .day-panel { display: none; }
+  .day-panel.active { display: block; }
+  .day-title { font-size: 15px; font-weight: 500; margin-bottom: 2px; }
+  .day-theme { font-size: 12px; color: #5f5e5a; margin-bottom: 10px; }
+  .dist-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding: 7px 12px; border-radius: 6px; background: #fff; border: 1px solid #d3d1c7; font-size: 11px; color: #5f5e5a; }
+  .dist-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .stop { display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start; }
+  .timeline { display: flex; flex-direction: column; align-items: center; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .line { width: 1.5px; flex: 1; min-height: 26px; background: #d3d1c7; margin-top: 3px; }
+  .stop-body { flex: 1; padding-bottom: 2px; }
+  .stop-time { font-size: 11px; color: #888; margin-bottom: 1px; }
+  .stop-name { font-size: 14px; font-weight: 500; }
+  .stop-note { font-size: 12px; color: #5f5e5a; margin-top: 2px; line-height: 1.5; }
+  .badge { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 10px; margin-right: 4px; font-weight: 500; }
+  .b-drive { background: #E6F1FB; color: #0C447C; }
+  .b-sight { background: #EAF3DE; color: #27500A; }
+  .b-food  { background: #FAEEDA; color: #633806; }
+  .b-onsen { background: #FAECE7; color: #711813; }
+  .b-hotel { background: #EEEDFE; color: #3C3489; }
+  .b-run   { background: #E1F5EE; color: #085041; }
+  .b-info  { background: #F1EFE8; color: #444441; }
+  .b-resv  { background: #FCEBEB; color: #A32D2D; }
+  .tips-box { margin-top: 18px; padding: 12px 14px; border-radius: 8px; border: 1px solid #d3d1c7; background: #fff; }
+  .tips-title { font-size: 12px; font-weight: 500; margin-bottom: 6px; }
+  .tips-box ul { padding-left: 16px; }
+  .tips-box li { font-size: 12px; color: #5f5e5a; line-height: 1.8; }
+</style>
 </head>
 <body>
-    <h1>Matsuyama Travel Itinerary</h1>
-    <div class="tabs">
-        <div class="tab" onclick="showTab(0)">Day 1</div>
-        <div class="tab" onclick="showTab(1)">Day 2</div>
-        <div class="tab" onclick="showTab(2)">Day 3</div>
-        <div class="tab" onclick="showTab(3)">Day 4</div>
-        <div class="tab" onclick="showTab(4)">Day 5</div>
-    </div>
-    <div class="contents">
-        <div class="content active">
-            <h2>Day 1: Arrival in Matsuyama</h2>
-            <p>Details of Day 1 itinerary...</p>
-        </div>
-        <div class="content">
-            <h2>Day 2: Exploring Matsuyama</h2>
-            <p>Details of Day 2 itinerary...</p>
-        </div>
-        <div class="content">
-            <h2>Day 3: Adventure Day</h2>
-            <p>Details of Day 3 itinerary...</p>
-        </div>
-        <div class="content">
-            <h2>Day 4: Beach Day</h2>
-            <p>Details of Day 4 itinerary...</p>
-        </div>
-        <div class="content">
-            <h2>Day 5: Departure</h2>
-            <p>Details of Day 5 itinerary...</p>
-        </div>
-    </div>
-    <script>
-        function showTab(index) {
-            const contents = document.querySelectorAll('.content');
-            const tabs = document.querySelectorAll('.tab');
-            contents.forEach((content, i) => {
-                content.classList.toggle('active', i === index);
-            });
-            tabs.forEach((tab, i) => {
-                tab.classList.toggle('active', i === index);
-            });
-        }
-    </script>
+
+<h2>마쓰야마 렌트카 4박 5일 🌸</h2>
+<div class="sub">2026년 4월 23일(목) ~ 4월 27일(월) · 제주항공 7C1703/1704 · 호텔 파티오 도고</div>
+
+<div class="rental-card">
+  <div class="rental-item"><strong>예약처</strong>TABIRAI Japan 렌트카</div>
+  <div class="rental-item"><strong>예약번호</strong>138039303</div>
+  <div class="rental-item"><strong>패스워드</strong>0adcde8d</div>
+  <div class="rental-item"><strong>2일차 저녁</strong>아미모토 벳테이 18:00 예약</div>
+  <div class="rental-item"><strong>ETC 카드</strong>현장 포함 여부 확인 필수</div>
+</div>
+
+<div class="day-tabs">
+  <button class="tab active" onclick="show(0)">4/23 (목) 1일차</button>
+  <button class="tab" onclick="show(1)">4/24 (금) 2일차</button>
+  <button class="tab" onclick="show(2)">4/25 (토) 3일차</button>
+  <button class="tab" onclick="show(3)">4/26 (일) 4일차</button>
+  <button class="tab" onclick="show(4)">4/27 (월) 5일차</button>
+</div>
+
+<!-- Day 1 -->
+<div class="day-panel active" id="d0">
+  <div class="day-title">1일차 — 입성 · 봇짱 열차 박물관 · 도고 온천가</div>
+  <div class="day-theme">공항 도착 → 봇짱 박물관 → 체크인 → 도고 온천가 산책 → 시내 저녁</div>
+  <div class="dist-bar"><div class="dist-dot" style="background:#888"></div><span>총 이동거리 약 15km · 여유로운 첫날</span></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#378ADD"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">13:15</div><div class="stop-name">인천공항 출발</div><div class="stop-note"><span class="badge b-info">항공</span>제주항공 7C1703 · ICN → MYJ · 비행 약 1시간 35분</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#378ADD"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">14:50</div><div class="stop-name">마쓰야마 공항 도착</div><div class="stop-note"><span class="badge b-info">항공</span>제주항공 7C1703 · MYJ 도착</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#378ADD"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">15:30</div><div class="stop-name">렌터카 수령</div><div class="stop-note"><span class="badge b-drive">렌트카</span>예약번호 138039303 · 패스워드 0adcde8d · ETC 카드 포함 여부 현장 확인</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#1D9E75"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">16:00</div><div class="stop-name">봇짱 열차 박물관</div><div class="stop-note"><span class="badge b-sight">관광</span>마쓰야마역 앞 스타벅스 1층 안쪽 · 입장 무료 · 7:00~21:00 · 약 30분</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#534AB7"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">17:00</div><div class="stop-name">호텔 파티오 도고 체크인</div><div class="stop-note"><span class="badge b-hotel">숙소</span>도고 온센 바로 앞 · 주차 ¥800/일 · 유카타 대여 가능<br>⚠️ 체크인 즉시 프런트에 얏코 스시 예약 요청 — "오늘 저녁 19:00 얏코 스시 예약 부탁드립니다" · 전화번호 +81-89-941-9772</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#D85A30"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">17:30</div><div class="stop-name">도고 온천가 산책</div><div class="stop-note"><span class="badge b-onsen">온천</span>유카타 차림 상점가 · 봇짱 단고 · 족욕탕 · 봇짱 가라쿠리 시계탑 정각 퍼레이드</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#BA7517"></div></div><div class="stop-body"><div class="stop-time">19:00</div><div class="stop-name">얏코 스시</div><div class="stop-note"><span class="badge b-food">저녁</span>도고유노마치 · 호텔에서 도보 2분 · 에히메 신선 스시 전문 · 17:30~22:30 · 수요일 휴무 (4/23 목요일 ✅) · 예약 권장</div></div></div>
+</div>
+
+<!-- Day 2 -->
+<div class="day-panel" id="d1">
+  <div class="day-title">2일차 — 시마나미 해도 & 아미모토 벳테이</div>
+  <div class="day-theme">이마바리 → 시마나미 해도 → 기로산 전망대 → 귀환 → 아미모토 벳테이 18:00</div>
+  <div class="dist-bar"><div class="dist-dot" style="background:#BA7517"></div><span>총 이동거리 약 160km · 16:00 귀환하면 이자카야 18:00 여유 있게 맞춤</span></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#378ADD"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">10:00</div><div class="stop-name">이마바리로 이동</div><div class="stop-note"><span class="badge b-drive">렌트카</span>약 60km · 1시간 · 타월 미술관 선택 방문 가능 (9:30~18:00)</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#378ADD"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">11:30</div><div class="stop-name">시마나미 해도 드라이브</div><div class="stop-note"><span class="badge b-drive">렌트카</span>이마바리 → 오시마 섬 · 연속 대교 위 다도해 절경 · ETC 카드 필수</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#1D9E75"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">13:00</div><div class="stop-name">기로산 전망대 & 점심</div><div class="stop-note"><span class="badge b-sight">관광</span>구마 켄고 설계 · ⭐ 4.6 · 쿠루시마 해협 + 이시즈치산 조망 · 차로 정상 진입 가능</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#378ADD"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">16:00</div><div class="stop-name">마쓰야마 귀환 · 숙소 주차</div><div class="stop-note"><span class="badge b-drive">렌트카</span>약 70km · 1시간 · 호텔 주차 후 이치반초까지 도보 or 택시 15분</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#BA7517"></div></div><div class="stop-body"><div class="stop-time">18:00</div><div class="stop-name">이자카야 아미모토 벳테이</div><div class="stop-note"><span class="badge b-resv">예약 완료 18:00</span>이치반초 · 고등어 사시미·해산물 전문 · 17:00~자정</div></div></div>
+</div>
+
+<!-- Day 3 -->
+<div class="day-panel" id="d2">
+  <div class="day-title">3일차 — 우치코 · 오즈 · 시모나다 역 일몰</div>
+  <div class="day-theme">모닝런 → 우치코 구시가지 → 오즈(가류 산장+성) → 시모나다 역 노을</div>
+  <div class="dist-bar"><div class="dist-dot" style="background:#E24B4A"></div><span>총 이동거리 약 150km · 최장거리 — 10:00 출발 필수</span></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#1D9E75"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">07:30</div><div class="stop-name">모닝 러닝 7km</div><div class="stop-note"><span class="badge b-run">러닝</span>도고 공원 or 마쓰야마성 해자 주변 · 벚꽃 끝물 꽃잎 날리는 아침</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#378ADD"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">10:00</div><div class="stop-name">마쓰야마 출발 → 우치코</div><div class="stop-note"><span class="badge b-drive">렌트카</span>약 35km · 50분</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#1D9E75"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">11:00</div><div class="stop-name">우치코 요카이치 구시가지</div><div class="stop-note"><span class="badge b-sight">관광</span>밀랍 상인 마을 · 가미하가 저택 · 우치코좌 가부키 극장 · 약 1.5시간</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#BA7517"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">13:00</div><div class="stop-name">오즈 이동 · 우와지마식 도미밥 점심</div><div class="stop-note"><span class="badge b-food">식사</span>도미회 + 날계란 + 특제 간장 비빔 덮밥 스타일</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#1D9E75"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">14:30</div><div class="stop-name">가류 산장 & 오즈성</div><div class="stop-note"><span class="badge b-sight">관광</span>히지강 절벽 메이지 별장 + 오즈성 세트권 · 9:00~16:30</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#1D9E75"></div></div><div class="stop-body"><div class="stop-time">18:00</div><div class="stop-name">시모나다 역 일몰</div><div class="stop-note"><span class="badge b-sight">관광</span>오즈 → 시모나다 약 35km · 일몰 19:10 전후 · 기차 1시간 간격 — Navitime 앱 시각표 확인</div></div></div>
+</div>
+
+<!-- Day 4 -->
+<div class="day-panel" id="d3">
+  <div class="day-title">4일차 — 마쓰야마성 · 이시테지 · 도베 도자기 마을</div>
+  <div class="day-theme">마쓰야마성 체어리프트 → 이시테지 동굴 → 도베야키 → 온천 → 이자카야 마지막 밤</div>
+  <div class="dist-bar"><div class="dist-dot" style="background:#639922"></div><span>총 이동거리 약 30km · 여유로운 시내권 하루</span></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#1D9E75"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">09:00</div><div class="stop-name">마쓰야마성 & 체어리프트</div><div class="stop-note"><span class="badge b-sight">관광</span>9:00 오픈 · 체어리프트(1인용·안전바 없음) vs 곤돌라 · 올라갈 때·내려올 때 각각 다른 방식 추천 · 약 2시간 · 마감 16:00</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#1D9E75"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">11:00</div><div class="stop-name">이시테지 (石手寺)</div><div class="stop-note"><span class="badge b-sight">관광</span>시코쿠 88순례 51번 국보 사찰 · 160m 미로 동굴 탐험 · 차로 10분 · 약 1시간</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#BA7517"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">12:30</div><div class="stop-name">덴푸라 고텐</div><div class="stop-note"><span class="badge b-food">점심</span>마치타운 B1F · 마쓰야마성에서 도보 10분 · ⭐ 4.9 (리뷰 3,700개) · 튀김 즉석 조리 · 한국어 가능 · 11:00~21:00 · 예약 권장</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#1D9E75"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">13:30</div><div class="stop-name">도베 도자기 마을</div><div class="stop-note"><span class="badge b-sight">관광</span>약 15km · 20분 · 300년 전통 도베야키 · 공방 체험 가능 · 뮤지엄 9:00~17:00 · 4/26 일요일 ✅ 영업</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#D85A30"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">17:00</div><div class="stop-name">도고 아스카노유 온천</div><div class="stop-note"><span class="badge b-onsen">온천</span>별관 · 혼잡 덜함 · 노천탕 있음 · 마지막 밤 온천으로 피로 회복</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#BA7517"></div></div><div class="stop-body"><div class="stop-time">19:00</div><div class="stop-name">이자카야 마지막 밤</div><div class="stop-note"><span class="badge b-food">식사</span>자코텐 + 에히메 명물 안주 · 미칸 사와로 여행 피날레</div></div></div>
+</div>
+
+<!-- Day 5 -->
+<div class="day-panel" id="d4">
+  <div class="day-title">5일차 — 기념품 쇼핑 & 귀국</div>
+  <div class="day-theme">체크아웃 → 쇼핑 → 렌터카 반납 → 제주항공 7C1704 출발</div>
+  <div class="dist-bar"><div class="dist-dot" style="background:#888"></div><span>총 이동거리 약 15km · 공항까지만</span></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#534AB7"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">10:00</div><div class="stop-name">체크아웃 & 기념품 쇼핑</div><div class="stop-note"><span class="badge b-hotel">숙소</span>짐 프런트 맡기고 오카이도 or 도고 상점가 · 수도꼭지 귤 주스 체험 필수</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#1D9E75"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">10:30</div><div class="stop-name">기념품 리스트</div><div class="stop-note"><span class="badge b-food">쇼핑</span>귤 젤리 · 마쓰야마 타르트(야나기야) · 봇짱 단고 · 미칸 과자 · 도베야키 소품</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#BA7517"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">12:00</div><div class="stop-name">가벼운 점심</div><div class="stop-note"><span class="badge b-food">식사</span>이리코 육수 에히메 우동 or 소바</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#378ADD"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">13:30</div><div class="stop-name">렌터카 반납 → 공항 이동</div><div class="stop-note"><span class="badge b-drive">렌트카</span>예약번호 138039303 · 14:00 이전 반납 권장 · 셔틀버스 공항 이동</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#378ADD"></div><div class="line"></div></div><div class="stop-body"><div class="stop-time">15:50</div><div class="stop-name">마쓰야마 공항 출발</div><div class="stop-note"><span class="badge b-info">항공</span>제주항공 7C1704 · MYJ → ICN · 비행 약 1시간 40분</div></div></div>
+  <div class="stop"><div class="timeline"><div class="dot" style="background:#378ADD"></div></div><div class="stop-body"><div class="stop-time">17:30</div><div class="stop-name">인천공항 도착</div><div class="stop-note"><span class="badge b-info">항공</span>제주항공 7C1704 · ICN 도착</div></div></div>
+</div>
+
+<div class="tips-box">
+  <div class="tips-title">📋 핵심 체크리스트</div>
+  <ul>
+    <li>아미모토 벳테이 18:00 예약 — 2일차 시마나미에서 16:00 귀환하면 여유 있게 맞춤 ✅</li>
+    <li>렌터카 ETC 카드 — 현장 수령 시 포함 여부 확인 (2일차 시마나미 해도 요금소 필수)</li>
+    <li>3일차 10:00 출발 필수 — 시모나다 역 일몰(19:10) 타이밍 맞추려면 여유 없음</li>
+    <li>마쓰야마성 입장 마감 16:00 — 4일차 9:00 오픈 맞춰 입장</li>
+    <li>도베야키 뮤지엄 수요일 휴관 — 4/26(일) 영업 확인 완료 ✅</li>
+    <li>시모나다 역 기차 1시간 간격 — Navitime Japan 앱으로 시각표 사전 확인</li>
+    <li>우핸들·좌측 통행 — 첫날 공항~숙소 구간 천천히 적응</li>
+  </ul>
+</div>
+
+<script>
+function show(i) {
+  document.querySelectorAll('.day-panel').forEach((p,idx) => p.classList.toggle('active', idx===i));
+  document.querySelectorAll('.tab').forEach((t,idx) => t.classList.toggle('active', idx===i));
+}
+</script>
 </body>
 </html>
