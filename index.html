@@ -3,28 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Matsuyama Itinerary</title>
+    <style>
+        /* Add your custom CSS styling here */
+        body { font-family: Arial, sans-serif; }
+        .tabs { display: flex; cursor: pointer; }
+        .tab { padding: 10px; border: 1px solid #ccc; }
+        .content { display: none; padding: 10px; border: 1px solid #ccc; }
+        .active { display: block; }
+    </style>
 </head>
 <body>
-    <h1>Matsuyama Itinerary</h1>
-    <p>Welcome to your Matsuyama travel itinerary! Below are the details:</p>
-    <h2>Day 1: Arrival</h2>
-    <ul>
-        <li>Arrive at Matsuyama Airport</li>
-        <li>Check in to the hotel</li>
-        <li>Visit Matsuyama Castle</li>
-    </ul>
-    <h2>Day 2: Exploring</h2>
-    <ul>
-        <li>Visit the Dogo Onsen hot springs</li>
-        <li>Explore the city center</li>
-        <li>Enjoy local cuisine at a recommended restaurant</li>
-    </ul>
-    <h2>Day 3: Departure</h2>
-    <ul>
-        <li>Last-minute shopping</li>
-        <li>Check out from the hotel</li>
-        <li>Depart from Matsuyama Airport</li>
-    </ul>
+    <h1>Matsuyama Travel Itinerary</h1>
+    <div class="tabs">
+        <div class="tab" onclick="showTab(0)">Day 1</div>
+        <div class="tab" onclick="showTab(1)">Day 2</div>
+        <div class="tab" onclick="showTab(2)">Day 3</div>
+        <div class="tab" onclick="showTab(3)">Day 4</div>
+        <div class="tab" onclick="showTab(4)">Day 5</div>
+    </div>
+    <div class="contents">
+        <div class="content active">
+            <h2>Day 1: Arrival in Matsuyama</h2>
+            <p>Details of Day 1 itinerary...</p>
+        </div>
+        <div class="content">
+            <h2>Day 2: Exploring Matsuyama</h2>
+            <p>Details of Day 2 itinerary...</p>
+        </div>
+        <div class="content">
+            <h2>Day 3: Adventure Day</h2>
+            <p>Details of Day 3 itinerary...</p>
+        </div>
+        <div class="content">
+            <h2>Day 4: Beach Day</h2>
+            <p>Details of Day 4 itinerary...</p>
+        </div>
+        <div class="content">
+            <h2>Day 5: Departure</h2>
+            <p>Details of Day 5 itinerary...</p>
+        </div>
+    </div>
+    <script>
+        function showTab(index) {
+            const contents = document.querySelectorAll('.content');
+            const tabs = document.querySelectorAll('.tab');
+            contents.forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+            tabs.forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+        }
+    </script>
 </body>
 </html>
